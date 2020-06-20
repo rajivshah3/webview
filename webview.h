@@ -735,6 +735,7 @@ using browser_engine = cocoa_wkwebview_engine;
 #include <codecvt>
 #include <stdlib.h>
 #include <windows.h>
+#include <EventToken.h>
 
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "Shlwapi.lib")
@@ -938,7 +939,7 @@ private:
       controller->AddRef();
 
       ICoreWebView2 *webview;
-      winrt::Windows::Foundation::EventRegistrationToken token;
+      Windows::Foundation::EventRegistrationToken token;
       controller->get_CoreWebView2(&webview);
       webview->add_WebMessageReceived(this, &token);
 
