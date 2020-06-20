@@ -918,7 +918,7 @@ private:
 
   class webview2_com_handler
       : public ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler,
-        public ICoreWebView2CreateCoreWebView2ControllerCompletedHandler,        
+        public ICoreWebView2CreateCoreWebView2ControllerCompletedHandler,
         public ICoreWebView2WebMessageReceivedEventHandler {
     using webview2_com_handler_cb_t = std::function<void(ICoreWebView2Controller *)>;
 
@@ -938,7 +938,7 @@ private:
       controller->AddRef();
 
       ICoreWebView2 *webview;
-      EventRegistrationToken token;
+      winrt::Windows::Foundation::EventRegistrationToken token;
       controller->get_CoreWebView2(&webview);
       webview->add_WebMessageReceived(this, &token);
 
@@ -952,7 +952,7 @@ private:
       std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> wideCharConverter;
       m_msgCb(wideCharConverter.to_bytes(message));
       sender->PostWebMessageAsString(message);
-      
+
       CoTaskMemFree(message);
       return S_OK;
     }
@@ -971,8 +971,8 @@ public:
       HINSTANCE hInstance = GetModuleHandle(nullptr);
       HICON icon = (HICON) LoadImage(
         hInstance, IDI_APPLICATION, IMAGE_ICON,
-        GetSystemMetrics(SM_CXSMICON), 
-        GetSystemMetrics(SM_CYSMICON), 
+        GetSystemMetrics(SM_CXSMICON),
+        GetSystemMetrics(SM_CYSMICON),
         LR_DEFAULTCOLOR);
 
       WNDCLASSEX wc;
